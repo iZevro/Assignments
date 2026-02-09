@@ -104,3 +104,14 @@ while is_on:
         }
         for item, amount in machine.machine_resources.items():
             print(f"{item.capitalize()}: {amount} {units.get(item)}")
+
+    elif choice in recipes:
+        sandwich = recipes[choice]
+
+        if machine.check_resources(sandwich["ingredients"]):
+            payment = machine.process_coins()
+
+            if machine.transaction_result(payment, sandwich["cost"]):
+                machine.make_sandwich(choice, sandwich["ingredients"])
+    else:
+        print("Invalid choice. Please try again.")
