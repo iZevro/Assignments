@@ -1,4 +1,5 @@
 ### Data ###
+from random import choice
 
 recipes = {
     "small": {
@@ -85,3 +86,21 @@ class SandwichMachine:
             self.machine_resources[item] -= amount
         print(f"{sandwich_size} sandwich is ready. Bon appetit!")
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
+
+machine = SandwichMachine(resources)
+
+is_on = True
+
+while is_on:
+    choice = input("What would you like? (small/medium/large/ off/ report): ").lower()
+
+    if choice == "off":
+        is_on = False
+    elif choice == "report":
+        units = {
+            "bread": "slice(s)",
+            "ham": "slice(s)",
+            "cheese": "pound(s)"
+        }
+        for item, amount in machine.machine_resources.items():
+            print(f"{item.capitalize()}: {amount} {units.get(item)}")
